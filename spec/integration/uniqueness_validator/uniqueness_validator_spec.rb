@@ -26,6 +26,14 @@ describe 'uniqueness_validator/uniqueness_validator_spec' do
 
       it_should_behave_like "invalid model"
     end
+
+    describe "with duplicate name in a child class" do
+      before do
+        @model = DataMapper::Validations::Fixtures::BigDepartment.new(:name => "HR")
+      end
+
+      it_should_behave_like "invalid model"
+    end
   end
 
   describe 'DataMapper::Validations::Fixtures::Organisation' do

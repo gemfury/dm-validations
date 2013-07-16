@@ -18,6 +18,7 @@ module DataMapper
 
         property :id, Serial
         property :name, String, :unique_index => true
+        property :type, Discriminator
 
         validates_uniqueness_of :name
       end
@@ -34,6 +35,9 @@ module DataMapper
         validates_uniqueness_of :user_name, :when => :signing_up_for_department_account,   :scope => [:department]
         validates_uniqueness_of :user_name, :when => :signing_up_for_organization_account, :scope => [:organisation]
       end
+
+      # For STI uniqueness testing
+      class BigDepartment < Department; end
     end
   end
 end
